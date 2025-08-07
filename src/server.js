@@ -4,7 +4,7 @@ import app from "./app.js";
 import logger from "./utils/logger.js";
 
 const PORT = process.env.PORT || 3000; // Use PORT from env or default 3000
-const NODE_ENV = process.env.NODE_ENV || "production"; // Default to production if not set
+
 let server;
 
 const startServer = async () => {

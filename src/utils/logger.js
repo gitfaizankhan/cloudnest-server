@@ -1,11 +1,9 @@
 import "../config/env.js";
 import pino from "pino";
 
-const env = process.env.NODE_ENV?.trim() || "production";
-
 const logger = pino({
   transport:
-    env === "development"
+    process.env.NODE_ENV === "development"
       ? {
           target: "pino-pretty",
           options: {
