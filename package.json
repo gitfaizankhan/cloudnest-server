@@ -28,9 +28,11 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.53.1",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
-    "pino": "^9.7.0"
+    "pino": "^9.7.0",
+    "postgres": "^3.4.7"
   },
   "devDependencies": {
     "jest": "^30.0.5",
