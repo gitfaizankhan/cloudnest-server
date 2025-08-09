@@ -1,4 +1,4 @@
-// Error Code
+// Error Codes
 const ERROR_CODES = {
   // 🔐 Authentication Errors
   UNAUTHORIZED: 401, // Invalid token or credentials
@@ -15,13 +15,13 @@ const ERROR_CODES = {
   FOLDER_CONFLICT: 409,
 
   // 🔗 Sharing & Access Errors
-  SHARE_LINK_INVALID: 400,
+  SHARE_LINK_INVALID: 400, // Invalid or malformed share link
   PERMISSION_DENIED: 403,
 
-  // 💾 Database / Server Errors
-  BAD_REQUEST: 400,
-  VALIDATION_ERROR: 422,
-  DUPLICATE_RESOURCE: 409,
+  // 💾 Database / Server & Validation Errors
+  BAD_REQUEST: 400, // Missing required fields or parameters
+  VALIDATION_ERROR: 422, // Fields provided but invalid format/value
+  DUPLICATE_RESOURCE: 409, // Resource already exists
   INTERNAL_ERROR: 500,
   DB_CONNECTION_FAILED: 503, // Service unavailable
 
