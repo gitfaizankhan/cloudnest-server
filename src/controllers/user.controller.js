@@ -12,11 +12,13 @@ function generateUsername(email) {
   const randomNum = Math.floor(1000 + Math.random() * 9000);
   return `${namePart}${randomNum}`;
 }
+
 // Cookie options for access and refresh tokens
 const cookieOptions = {
   httpOnly: true,
   secure: true,
 };
+
 const signUp = asyncHandler(async (req, res) => {
   const { email, password, full_name = null, phone = null } = req.body;
 
