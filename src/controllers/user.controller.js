@@ -12,7 +12,11 @@ function generateUsername(email) {
   const randomNum = Math.floor(1000 + Math.random() * 9000);
   return `${namePart}${randomNum}`;
 }
-
+// Cookie options for access and refresh tokens
+const cookieOptions = {
+  httpOnly: true,
+  secure: true,
+};
 const signUp = asyncHandler(async (req, res) => {
   const { email, password, full_name = null, phone = null } = req.body;
 
@@ -98,4 +102,51 @@ const signUp = asyncHandler(async (req, res) => {
   );
 });
 
-export { signUp };
+const login = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    throw new ApiError({
+      statusCode: 422,
+      message: "Email and password are required",
+      errorCode: "VALIDATION_ERROR",
+    });
+  }
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    throw new ApiError({
+      statusCode: 401,
+      message: error.message,
+      errorCode: "AUTH_FAILED",
+    });
+  }
+
+  // Extract access and refresh tokens from session (data.session)
+  const {
+    access_token: accessToken,
+    refresh_token: refreshToken,
+    user,
+  } = data.session || {};
+
+  if (!accessToken || !refreshToken) {
+    throw new ApiError({
+      statusCode: 500,
+      message: "Failed to generate authentication tokens",
+      errorCode: "TOKEN_ERROR",
+    });
+  }
+
+  // Set secure httpOnly cookies
+  res
+    .status(200)
+    .cookie("accessToken", accessToken, cookieOptions)
+    .cookie("refreshToken", refreshToken, cookieOptions)
+    .json(new ApiResponse(200, { user }, "User logged in successfully"));
+});
+
+export { signUp, login };
