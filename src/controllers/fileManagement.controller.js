@@ -847,7 +847,7 @@ const moveFolder = asyncHandler(async (req, res) => {
     );
 });
 
-/* ============================================================================
+/* =========================================================================
    GET /folders/:id/contents - Get all files/folders in a folder
 ============================================================================ */
 const getFolderContents = asyncHandler(async (req, res) => {
