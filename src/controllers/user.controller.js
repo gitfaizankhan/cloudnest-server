@@ -20,6 +20,7 @@ const cookieOptions = {
 };
 
 const signUp = asyncHandler(async (req, res) => {
+  console.log("Req.body: ", req.body);
   const { email, password, full_name = null, phone = null } = req.body;
 
   // 1. Validate input
