@@ -70,7 +70,7 @@ const signUp = asyncHandler(async (req, res) => {
   const username = generateUsername(email);
 
   // 5. Insert user info into your 'users' table
-  const { error: dbError } = await supabase.from("users").insert([
+  const { data: userData, error: dbError } = await supabase.from("users").insert([
     {
       id: userId,
       email,
@@ -80,7 +80,7 @@ const signUp = asyncHandler(async (req, res) => {
       phone,
 
     },
-  ]);
+  ]).select();
 
   if (dbError) {
     // Optional: rollback Supabase Auth user here if needed (advanced)
