@@ -78,7 +78,7 @@ const signUp = asyncHandler(async (req, res) => {
       password_hash: passwordHash,
       full_name,
       phone,
-      email_confirmed: false, // You can update this after confirmation if needed
+
     },
   ]);
 
@@ -91,16 +91,11 @@ const signUp = asyncHandler(async (req, res) => {
     });
   }
 
-  // 6. Return response with user and tokens
-  const accessToken = data?.session?.access_token || null;
-  const refreshToken = data?.session?.refresh_token || null;
 
   return res.status(201).json(
     new ApiResponse(201, {
       user: data.user,
       username,
-      accessToken,
-      refreshToken,
     })
   );
 });

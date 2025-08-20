@@ -3,7 +3,7 @@ import "./config/env.js";
 import app from "./app.js";
 import logger from "./utils/logger.js";
 
-const PORT = process.env.PORT || 3000; // Use PORT from env or default 3000
+const PORT = process.env.PORT || 8080; // Use PORT from env or default 3000
 
 let server;
 
