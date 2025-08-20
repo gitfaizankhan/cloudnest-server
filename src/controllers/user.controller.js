@@ -238,7 +238,7 @@ const refreshToken = asyncHandler(async (req, res) => {
 const getMe = asyncHandler(async (req, res) => {
   // 1. Extract access token from cookies
   const accessToken = req.cookies?.accessToken;
-
+console.log("Access Token:", accessToken);
   if (!accessToken) {
     throw new ApiError({
       statusCode: 401,
@@ -265,7 +265,7 @@ const getMe = asyncHandler(async (req, res) => {
   const { data: profile, error: profileError } = await supabase
     .from("users")
     .select(
-      "id, email, username, full_name, phone, email_confirmed, created_at"
+      "id, email, username, full_name, phone, created_at"
     )
     .eq("id", user.id)
     .single();
