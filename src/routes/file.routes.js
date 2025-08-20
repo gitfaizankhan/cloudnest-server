@@ -5,6 +5,7 @@ import {
   downloadFile,
   getFileMetadata,
   uploadFileChunk,
+  completeChunkUpload
 } from "../controllers/file.controller.js";
 
 const router = express.Router();

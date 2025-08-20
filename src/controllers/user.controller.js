@@ -238,7 +238,6 @@ const refreshToken = asyncHandler(async (req, res) => {
 const getMe = asyncHandler(async (req, res) => {
   // 1. Extract access token from cookies
   const accessToken = req.cookies?.accessToken;
-console.log("Access Token:", accessToken);
   if (!accessToken) {
     throw new ApiError({
       statusCode: 401,
